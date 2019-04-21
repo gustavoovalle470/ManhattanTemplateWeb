@@ -1,0 +1,18 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <p:dialog showEffect="fade" 
+                hideEffect="fade" width="300" 
+                widgetVar="logoutdlg">
+            <h:form>
+                SSSS
+                
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="logout"/>
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="PF('logoutdlg').hide();"/>
+            </h:form>
+        </p:dialog>
+</ui:composition>

@@ -25,7 +25,7 @@ public class LoginUsers {
     
     public boolean ValidateCredentials(String user, String password, HttpSession session) throws ManhattanException{
         String msg ="No se pudo iniciar sesión porque: ";
-        if(user == null || password == null || 
+        /**if(user == null || password == null || 
            user.equals("") || password.equals("")
            || UserSessionManager.getInstance().isUserConnected(user)
            || !isInvalidCrendetial(user, password)){
@@ -37,7 +37,7 @@ public class LoginUsers {
                      +(password.equals("")?"\n - El usuario y/o contraseña no son validos.":"");
             throw new ManhattanException(msg);
         }
-        UserSessionManager.getInstance().connectUser(user, session);
+        UserSessionManager.getInstance().connectUser(user, session); HABILITAR PARA UNA SOLA SESION.*/ 
         return true;
     }
 
@@ -46,5 +46,10 @@ public class LoginUsers {
             return false;
         }
         return true;
+    }
+    
+    public static boolean logout(HttpSession session){
+        System.out.println("Cerrando sesion para el usuario: "+UserSessionManager.getInstance().getUser(session));
+        return UserSessionManager.getInstance().logout(session);
     }
 }

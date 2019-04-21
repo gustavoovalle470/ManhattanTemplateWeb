@@ -5,14 +5,13 @@
  */
 package org.primefaces.customize.UI.security;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import org.primefaces.customize.UI.exceptions.ManhattanException;
 import org.primefaces.customize.UI.utils.UIMessageManagement;
-import org.primefaces.customize.controllers.LoginUsers;
+import org.primefaces.customize.controllers.session.LoginUsers;
 
 /**
  *
@@ -42,16 +41,16 @@ public class LoginBean {
     
     public String login(){
         //System.out.println("Login user: "+username+" with pass: "+password);
-//        try {
-//            if(LoginUsers.ValidateCredentials(username, password)){
-//                return "autowired";
-//            }else{
-//                return "denied";
-//            }
-//        } catch (ManhattanException ex) {
-//            UIMessageManagement.putErrorMessage(ex.getMsg());
-//            return "denied";
-//        }
-return "denied";
+        try {
+            if(LoginUsers.getInstance().ValidateCredentials(username, password, (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true))){
+                UIMessageManagement.putInfoMessage("Bienvenido "+username);
+                return "autowired";
+            }else{
+                return "denied";
+            }
+        } catch (ManhattanException ex) {
+            UIMessageManagement.putErrorMessage(ex.getMsg());
+            return "denied";
+        }
     }
 }
