@@ -53,15 +53,4 @@ public class LoginBean {
             return "denied";
         }
     }
-    
-    public String logout(){
-        System.out.println("Cerrar la sesion...");
-        //System.out.println("Login user: "+username+" with pass: "+password);
-        if (LoginUsers.logout((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true))) {
-            UIMessageManagement.putInfoMessage("La sesion del usuario "+username+" finalizó correctamente.");
-            return "logout";
-        } else {
-            return "failed";
-        }
-    }
 }

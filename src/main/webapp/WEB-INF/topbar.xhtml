@@ -21,7 +21,7 @@
                     <li class="profile-item">
                         <a href="#">                            
                             <p:graphicImage name="images/avatar.png" library="manhattan-layout" />
-                            <span class="topbar-item-name profile-name">Madison Hughes</span>
+                            <span class="topbar-item-name profile-name">#{UserSessionBean.username}</span>
                         </a>
 
                         <ul class="animated">
@@ -40,7 +40,7 @@
                                     <i class="fa fa-fw fa-cog"></i>
                                     <span>Configuración</span>
                                 </p:commandLink>
-                                <p:commandLink onclick="PF('logoutdlg').show();">
+                                <p:commandLink onclick="PF('dlg').show();">
                                     <i class="fa fa-fw fa-sign-out"></i>
                                     <span>Cerrar sesión</span>
                                 </p:commandLink>
