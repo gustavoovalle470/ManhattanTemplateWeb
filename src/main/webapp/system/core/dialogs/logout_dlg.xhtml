@@ -4,15 +4,24 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-    
-    <p:dialog showEffect="fade" 
-                hideEffect="fade" width="300" 
-                widgetVar="logoutdlg">
-            <h:form>
-                SSSS
-                
-                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="logout"/>
-                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="PF('logoutdlg').hide();"/>
-            </h:form>
-        </p:dialog>
+    <h:form>
+        <p:dialog header="¿Desea cerrar su sesión?" 
+                  widgetVar="logoutdlg" 
+                  resizable="false" 
+                  modal="true" 
+                  style="size: 300px;"
+                  closable="false">
+            <h:panelGrid columns="2" cellpadding="5">
+                <p>Esta a punto de cerrar su sesión de usuario, los cambios que no haya</p>
+                <p>guardado se perderán ¿Desea continuar?</p>
+                <f:facet name="footer">
+                    <div align="right">
+                        <p:commandButton value="Cancelar" onclick="PF('logoutdlg').hide()"/>
+                    <p:commandButton value="Cerrar sesión" action="#{UserSessionBean.logout()}" oncomplete="PF('logoutdlg').hide()"/>
+                    </div>
+                </f:facet>  
+            </h:panelGrid>
+        </p:dialog>    
+    </h:form>
+
 </ui:composition>

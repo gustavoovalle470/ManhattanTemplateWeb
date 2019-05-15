@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
  */
 public class UserSessionManager {
     private static UserSessionManager instance;
-    private final HashMap<String, HttpSession> users_online;
+    private final HashMap<HttpSession, String> users_online;
     
     public UserSessionManager(){
-        users_online = new HashMap<String, HttpSession>();
+        users_online = new HashMap<HttpSession, String>();
     }
     
     public static UserSessionManager getInstance(){
@@ -27,38 +27,29 @@ public class UserSessionManager {
         return instance;
     }
     
-    public boolean isUserConnected(String username){
-        return users_online.containsKey(username);
+    public boolean isUserConnected(HttpSession session){
+        return users_online.containsKey(session);
     }
     
     public void connectUser(String user, HttpSession session){
-        users_online.put(user, session);
+        users_online.put(session, user);
     }
     
-    public void disconectUser(String user){
-        users_online.get(user).invalidate();
-        users_online.remove(user);
+    public boolean disconectUser(HttpSession session){        
+        users_online.remove(session);
+        session.invalidate();
+        return true;
     }
     
-    public void putAttribute(String user, String attribute, Object value){
+ /**   public void putAttribute(String user, String attribute, Object value){
         users_online.get(user).setAttribute(attribute, value);
     }
     
     public Object getAttribute(String user, String attribute){
         return users_online.get(user).getAttribute(attribute);
     }
-    
+ */   
     public String getUser(HttpSession session){
-        for(String user: users_online.keySet()){
-            if(users_online.get(user).equals(session)){
-                return user;
-            }
-        }
-        return "";
-    }
-
-    public boolean logout(HttpSession session) {
-        users_online.remove(getUser(session));
-        return true;
+        return users_online.get(session);
     }
 }
