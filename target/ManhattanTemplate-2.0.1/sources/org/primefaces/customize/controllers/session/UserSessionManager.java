@@ -47,18 +47,4 @@ public class UserSessionManager {
     public Object getAttribute(String user, String attribute){
         return users_online.get(user).getAttribute(attribute);
     }
-    
-    public String getUser(HttpSession session){
-        for(String user: users_online.keySet()){
-            if(users_online.get(user).equals(session)){
-                return user;
-            }
-        }
-        return "";
-    }
-
-    public boolean logout(HttpSession session) {
-        users_online.remove(getUser(session));
-        return true;
-    }
 }

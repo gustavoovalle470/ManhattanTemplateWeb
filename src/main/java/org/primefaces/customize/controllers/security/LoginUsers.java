@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.primefaces.customize.controllers.session;
+package org.primefaces.customize.controllers.security;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;

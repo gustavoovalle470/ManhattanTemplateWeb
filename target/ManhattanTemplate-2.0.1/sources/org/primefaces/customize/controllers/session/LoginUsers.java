@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.primefaces.customize.controllers;
+package org.primefaces.customize.controllers.session;
 
+import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import org.primefaces.customize.UI.exceptions.ManhattanException;
 
 /**
@@ -12,18 +14,30 @@ import org.primefaces.customize.UI.exceptions.ManhattanException;
  * @author OvalleGA
  */
 public class LoginUsers {
-    public static boolean ValidateCredentials(String user, String password) throws ManhattanException{
+    private static LoginUsers instance;
+    
+    public static LoginUsers getInstance(){
+        if(instance == null){
+            instance = new LoginUsers();
+        }
+        return instance;
+    }
+    
+    public boolean ValidateCredentials(String user, String password, HttpSession session) throws ManhattanException{
         String msg ="No se pudo iniciar sesión porque: ";
         if(user == null || password == null || 
            user.equals("") || password.equals("")
-           || isInvalidCrendetial(user, password)){
+           || UserSessionManager.getInstance().isUserConnected(user)
+           || !isInvalidCrendetial(user, password)){
             msg = msg+(user == null?"\n - El usuario no puede ser nulo":"")
                      +(password == null?"\n - La contraseña no puede ser nula":"")
                      +(user.equals("")?"\n - El usuario no puede estar vacio":"")
                      +(password.equals("")?"\n - La contraseña no puede estar vacia":"")
+                     +(UserSessionManager.getInstance().isUserConnected(user)?"\n - El usuario "+user+" ya tiene una sesión abierta.":"")
                      +(password.equals("")?"\n - El usuario y/o contraseña no son validos.":"");
             throw new ManhattanException(msg);
         }
+        UserSessionManager.getInstance().connectUser(user, session);
         return true;
     }
 
