@@ -9,9 +9,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.primefaces.customize.UI.exceptions.ManhattanException;
 import org.primefaces.customize.UI.utils.UIMessageManagement;
-import org.primefaces.customize.controllers.session.LoginUsers;
+import org.primefaces.customize.controllers.security.LoginUsers;
+
 
 /**
  *

@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import org.primefaces.customize.UI.utils.UIMessageManagement;
-import org.primefaces.customize.controllers.session.UserSessionManager;
+import org.primefaces.customize.controllers.security.UserSessionManager;
 
 /**
  *
