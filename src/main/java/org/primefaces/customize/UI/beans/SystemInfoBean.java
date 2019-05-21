@@ -5,7 +5,7 @@
  */
 package org.primefaces.customize.UI.beans;
 
-import javax.faces.bean.ApplicationScoped;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -15,7 +15,7 @@ import javax.faces.bean.SessionScoped;
  */
 @SessionScoped
 @ManagedBean(name = "SystemInfoBean")
-public class SystemInfoBean {
+public class SystemInfoBean implements Serializable{
     private String app_name="APP_NAME";
     private String header_view="APP_NAME";
 

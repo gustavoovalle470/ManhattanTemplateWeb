@@ -5,6 +5,7 @@
  */
 package org.primefaces.customize.UI.beans.security;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -18,9 +19,9 @@ import org.primefaces.customize.controllers.security.UserSessionManager;
  */
 @SessionScoped
 @ManagedBean(name = "UserSessionBean")
-public class UserSessionBean {
+public class UserSessionBean implements Serializable{
     private String username;
-    private HttpSession session;
+    private final HttpSession session;
 
     public UserSessionBean(){
         session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
